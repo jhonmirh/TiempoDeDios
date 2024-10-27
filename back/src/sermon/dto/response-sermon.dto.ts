@@ -2,6 +2,9 @@
 import { Sermon } from '../sermon.entity';
 
 export class ResponseSermonDto {
+
+
+  
   id: string;
   date: string;
   description: string;
