@@ -1,13 +1,13 @@
 // src/pastor/pastor.module.ts
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Pastor } from 'src/pastor/pastor.entity';
-import { PastorsService } from 'src/pastor/pastors.service';
+import { Devotional } from './devotional.entity';
 import { DevotionalsService } from '../devotional/devotionals.service';
-
+import { DevotionalsController } from './devotionals.controller';
 @Module({
-  imports: [TypeOrmModule.forFeature([Pastor])],
-  providers: [PastorsService, DevotionalsService],
-  exports: [PastorsService], // Asegúrate de exportar el servicio si lo necesitas en otros módulos
+  imports: [TypeOrmModule.forFeature([Devotional])],
+  controllers: [DevotionalsController],
+  providers: [DevotionalsService],
+  exports: [DevotionalsService], 
 })
-export class PastorsModule {}
+export class DevotionalModule {}

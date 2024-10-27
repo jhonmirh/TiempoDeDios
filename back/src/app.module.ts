@@ -1,8 +1,14 @@
 // src/app.module.ts
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { PetitionsModule } from './petitions/petitions.module'; // Ajusta la ruta según sea necesario
-
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { PetitionsModule } from './petition/petitions.module';
+import { CredentialsModule } from './credential/credentials.module';
+import { DevotionalModule } from './devotional/devotionals.module';
+import { UsersModule } from './users/users.module';
+// import { ConfigModule } from '@nestjs/config';
+import { SermonsModule } from './sermon/sermons.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -16,8 +22,15 @@ import { PetitionsModule } from './petitions/petitions.module'; // Ajusta la rut
       synchronize: true,
     }),
     PetitionsModule,
-    
-    // Otros módulos...
+    CredentialsModule,
+    SermonsModule,
+    DevotionalModule,
+    UsersModule,
+
   ],
+  controllers: [AppController],
+  providers: [AppService],
+  exports: []
+
 })
-export class AppModule {}
+export class AppModule { }
