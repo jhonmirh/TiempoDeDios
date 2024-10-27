@@ -18,6 +18,7 @@ const devotionals_service_1 = require("./devotionals.service");
 const create_devotional_dto_1 = require("./dto/create-devotional.dto");
 const response_devotional_dto_1 = require("./dto/response-devotional.dto");
 const pastors_service_1 = require("../pastor/pastors.service");
+const swagger_1 = require("@nestjs/swagger");
 let DevotionalsController = class DevotionalsController {
     constructor(devotionalsService, pastorsService) {
         this.devotionalsService = devotionalsService;
@@ -42,6 +43,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], DevotionalsController.prototype, "create", null);
 exports.DevotionalsController = DevotionalsController = __decorate([
+    (0, swagger_1.ApiTags)('devotionals'),
     (0, common_1.Controller)('devotionals'),
     __metadata("design:paramtypes", [devotionals_service_1.DevotionalsService,
         pastors_service_1.PastorsService])

@@ -8,5 +8,5 @@ export declare class DevotionalsService {
     private readonly pastorsService;
     constructor(devotionalRepository: Repository<Devotional>, pastorsService: PastorsService);
     create(createDto: CreateDevotionalDto, pastor: Pastor): Promise<Devotional>;
-    findById(id: string): Promise<Pastor>;
+    findPastorById(id: string): Promise<Pastor>;
 }

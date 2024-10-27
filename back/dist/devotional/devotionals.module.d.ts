@@ -1,2 +1,2 @@
-export declare class PastorsModule {
+export declare class DevotionalModule {
 }

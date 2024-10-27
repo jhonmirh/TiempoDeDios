@@ -2,7 +2,9 @@
 import { Controller, Get, Post, Body, Param, Put, Delete } from '@nestjs/common';
 import { PastorsService } from './pastors.service';
 import { CreatePastorDto } from './dto/create-pastor.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Pastor')
 @Controller('pastors')
 export class PastorsController {
   constructor(private readonly pastorsService: PastorsService) {}

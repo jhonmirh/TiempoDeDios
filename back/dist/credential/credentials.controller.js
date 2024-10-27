@@ -18,6 +18,7 @@ const credentials_service_1 = require("./credentials.service");
 const create_credential_dto_1 = require("./dto/create-credential.dto");
 const update_credential_dto_1 = require("./dto/update-credential.dto");
 const response_credential_dto_1 = require("./dto/response-credential.dto");
+const swagger_1 = require("@nestjs/swagger");
 let CredentialsController = class CredentialsController {
     constructor(credentialsService) {
         this.credentialsService = credentialsService;
@@ -77,6 +78,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CredentialsController.prototype, "findAll", null);
 exports.CredentialsController = CredentialsController = __decorate([
+    (0, swagger_1.ApiTags)('credentials'),
     (0, common_1.Controller)('credentials'),
     __metadata("design:paramtypes", [credentials_service_1.CredentialsService])
 ], CredentialsController);

@@ -4,7 +4,9 @@ import { CredentialsService } from './credentials.service';
 import { CreateCredentialDto } from './dto/create-credential.dto';
 import { UpdateCredentialDto } from './dto/update-credential.dto';
 import { ResponseCredentialDto } from './dto/response-credential.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('credentials')
 @Controller('credentials')
 export class CredentialsController {
   constructor(private readonly credentialsService: CredentialsService) {}

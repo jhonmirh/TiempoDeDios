@@ -30,12 +30,8 @@ let DevotionalsService = class DevotionalsService {
         });
         return this.devotionalRepository.save(devotional);
     }
-    async findById(id) {
-        const pastor = await this.pastorRepository.findOne({ where: { id } });
-        if (!pastor) {
-            throw new common_1.NotFoundException(`Pastor with ID ${id} not found`);
-        }
-        return pastor;
+    async findPastorById(id) {
+        return this.pastorsService.findById(id);
     }
 };
 exports.DevotionalsService = DevotionalsService;

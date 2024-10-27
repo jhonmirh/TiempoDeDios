@@ -6,20 +6,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PastorsModule = void 0;
+exports.DevotionalModule = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
-const pastor_entity_1 = require("../pastor/pastor.entity");
-const pastors_service_1 = require("../pastor/pastors.service");
-const devotionals_service_1 = require("../devotional/devotionals.service");
-let PastorsModule = class PastorsModule {
+const devotionals_service_1 = require("./devotionals.service");
+const devotional_entity_1 = require("./devotional.entity");
+const pastors_module_1 = require("../pastor/pastors.module");
+let DevotionalModule = class DevotionalModule {
 };
-exports.PastorsModule = PastorsModule;
-exports.PastorsModule = PastorsModule = __decorate([
+exports.DevotionalModule = DevotionalModule;
+exports.DevotionalModule = DevotionalModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([pastor_entity_1.Pastor])],
-        providers: [pastors_service_1.PastorsService, devotionals_service_1.DevotionalsService],
-        exports: [pastors_service_1.PastorsService],
+        imports: [typeorm_1.TypeOrmModule.forFeature([devotional_entity_1.Devotional]), pastors_module_1.PastorsModule],
+        providers: [devotionals_service_1.DevotionalsService],
     })
-], PastorsModule);
+], DevotionalModule);
 //# sourceMappingURL=devotionals.module.js.map

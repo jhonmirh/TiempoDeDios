@@ -9,7 +9,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
-const petitions_module_1 = require("./petitions/petitions.module");
+const app_controller_1 = require("./app.controller");
+const app_service_1 = require("./app.service");
+const petitions_module_1 = require("./petition/petitions.module");
+const credentials_module_1 = require("./credential/credentials.module");
+const devotionals_module_1 = require("./devotional/devotionals.module");
+const users_module_1 = require("./users/users.module");
+const sermons_module_1 = require("./sermon/sermons.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -20,14 +26,21 @@ exports.AppModule = AppModule = __decorate([
                 type: 'postgres',
                 host: 'localhost',
                 port: 5432,
-                username: 'your_db_user',
-                password: 'your_db_password',
+                username: 'postgres',
+                password: 'gori',
                 database: 'kairos',
                 entities: [__dirname + '/**/*.entity{.ts,.js}'],
                 synchronize: true,
             }),
             petitions_module_1.PetitionsModule,
+            credentials_module_1.CredentialsModule,
+            sermons_module_1.SermonsModule,
+            devotionals_module_1.DevotionalModule,
+            users_module_1.UsersModule,
         ],
+        controllers: [app_controller_1.AppController],
+        providers: [app_service_1.AppService],
+        exports: []
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map

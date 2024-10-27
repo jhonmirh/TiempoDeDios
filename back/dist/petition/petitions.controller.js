@@ -16,6 +16,7 @@ exports.PetitionsController = void 0;
 const common_1 = require("@nestjs/common");
 const petitions_service_1 = require("./petitions.service");
 const create_petition_dto_1 = require("./dto/create-petition.dto");
+const swagger_1 = require("@nestjs/swagger");
 let PetitionsController = class PetitionsController {
     constructor(petitionsService) {
         this.petitionsService = petitionsService;
@@ -73,6 +74,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], PetitionsController.prototype, "remove", null);
 exports.PetitionsController = PetitionsController = __decorate([
+    (0, swagger_1.ApiTags)('petitions'),
     (0, common_1.Controller)('petitions'),
     __metadata("design:paramtypes", [petitions_service_1.PetitionsService])
 ], PetitionsController);

@@ -16,6 +16,7 @@ exports.PastorsController = void 0;
 const common_1 = require("@nestjs/common");
 const pastors_service_1 = require("./pastors.service");
 const create_pastor_dto_1 = require("./dto/create-pastor.dto");
+const swagger_1 = require("@nestjs/swagger");
 let PastorsController = class PastorsController {
     constructor(pastorsService) {
         this.pastorsService = pastorsService;
@@ -73,6 +74,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], PastorsController.prototype, "remove", null);
 exports.PastorsController = PastorsController = __decorate([
+    (0, swagger_1.ApiTags)('Pastor'),
     (0, common_1.Controller)('pastors'),
     __metadata("design:paramtypes", [pastors_service_1.PastorsService])
 ], PastorsController);

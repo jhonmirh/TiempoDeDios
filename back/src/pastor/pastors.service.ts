@@ -36,4 +36,12 @@ export class PastorsService {
     const pastor = await this.findOne(id);
     await this.pastorRepository.remove(pastor);
   }
+
+  async findById(id: string): Promise<Pastor> {
+    const pastor = await this.pastorRepository.findOne({ where: { id } });
+    if (!pastor) {
+      throw new NotFoundException('Pastor no encontrado');
+    }
+    return pastor;
+  }
 }

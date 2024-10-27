@@ -3,7 +3,9 @@ import { Controller, Get, Post, Body, Param, Delete, Patch } from '@nestjs/commo
 import { PetitionsService } from './petitions.service';
 import { CreatePetitionDto } from './dto/create-petition.dto';
 import { Petition } from './petition.entity';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('petitions')
 @Controller('petitions')
 export class PetitionsController {
   constructor(private readonly petitionsService: PetitionsService) {}

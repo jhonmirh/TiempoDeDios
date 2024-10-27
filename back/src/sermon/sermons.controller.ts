@@ -5,7 +5,9 @@ import { CreateSermonDto } from './dto/create-sermon.dto';
 import { UpdateSermonDto } from './dto/update-sermon.dto';
 import { ResponseSermonDto } from './dto/response-sermon.dto';
 import { Sermon } from './sermon.entity';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('sermons')
 @Controller('sermons')
 export class SermonsController {
   constructor(private readonly sermonsService: SermonsService) {}

@@ -9,4 +9,5 @@ export declare class PastorsService {
     findOne(id: string): Promise<Pastor>;
     update(id: string, dto: CreatePastorDto): Promise<Pastor>;
     remove(id: string): Promise<void>;
+    findById(id: string): Promise<Pastor>;
 }

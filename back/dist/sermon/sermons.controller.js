@@ -18,6 +18,7 @@ const sermons_service_1 = require("./sermons.service");
 const create_sermon_dto_1 = require("./dto/create-sermon.dto");
 const update_sermon_dto_1 = require("./dto/update-sermon.dto");
 const response_sermon_dto_1 = require("./dto/response-sermon.dto");
+const swagger_1 = require("@nestjs/swagger");
 let SermonsController = class SermonsController {
     constructor(sermonsService) {
         this.sermonsService = sermonsService;
@@ -90,6 +91,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], SermonsController.prototype, "findByPastorId", null);
 exports.SermonsController = SermonsController = __decorate([
+    (0, swagger_1.ApiTags)('sermons'),
     (0, common_1.Controller)('sermons'),
     __metadata("design:paramtypes", [sermons_service_1.SermonsService])
 ], SermonsController);

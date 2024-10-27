@@ -5,6 +5,9 @@ import { Pastor } from '../pastor/pastor.entity';
 import { ResponseDevotionalDto } from './dto/response-devotional.dto';
 import { PastorsService } from '../pastor/pastors.service';
 
+import { ApiTags } from '@nestjs/swagger';
+
+@ApiTags('devotionals')
 @Controller('devotionals')
 export class DevotionalsController {
   constructor(
@@ -17,6 +20,10 @@ export class DevotionalsController {
     const devotional = await this.devotionalsService.create(createDto, pastor);
     return new ResponseDevotionalDto(devotional);
   }
+
+
+
+  
 
   private async findPastorById(pastorId: string): Promise<Pastor> {
     return this.pastorsService.findById(pastorId);
