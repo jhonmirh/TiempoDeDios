@@ -5,6 +5,8 @@ export class CreatePastorDto {
   @IsPhoneNumber() phone: string; // Asegúrate de usar un validador de teléfono si es necesario
   @IsString() address: string;
   @IsString() country: string;
+  @IsString() name:string;
+  @IsString() email:string;
   @IsString() city: string;
   @IsInt() age: number;
   @IsInt() nid: number;

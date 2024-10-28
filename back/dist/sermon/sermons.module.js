@@ -12,12 +12,13 @@ const typeorm_1 = require("@nestjs/typeorm");
 const sermon_entity_1 = require("./sermon.entity");
 const sermons_controller_1 = require("./sermons.controller");
 const sermons_service_1 = require("./sermons.service");
+const credentials_module_1 = require("../credential/credentials.module");
 let SermonsModule = class SermonsModule {
 };
 exports.SermonsModule = SermonsModule;
 exports.SermonsModule = SermonsModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([sermon_entity_1.Sermon])],
+        imports: [typeorm_1.TypeOrmModule.forFeature([sermon_entity_1.Sermon]), credentials_module_1.CredentialsModule],
         controllers: [sermons_controller_1.SermonsController],
         providers: [sermons_service_1.SermonsService],
     })

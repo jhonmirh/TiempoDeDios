@@ -30,8 +30,21 @@ let DevotionalsService = class DevotionalsService {
         });
         return this.devotionalRepository.save(devotional);
     }
+    async findAll() {
+        return this.devotionalRepository.find({ relations: ['pastor'] });
+    }
     async findPastorById(id) {
         return this.pastorsService.findById(id);
+    }
+    async findByPastorId(pastorId) {
+        const devotionals = await this.devotionalRepository.find({
+            where: { pastor: { id: pastorId } },
+            relations: ['pastor'],
+        });
+        if (devotionals.length === 0) {
+            throw new common_1.NotFoundException(`No devotionals found for pastor with ID ${pastorId}`);
+        }
+        return devotionals;
     }
 };
 exports.DevotionalsService = DevotionalsService;

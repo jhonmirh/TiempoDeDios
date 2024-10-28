@@ -13,6 +13,12 @@ export class Pastor {
 
   @Column()
   address: string;
+  
+  @Column()
+  name: string;
+  
+  @Column()
+  email: string;
 
   @Column()
   country: string;

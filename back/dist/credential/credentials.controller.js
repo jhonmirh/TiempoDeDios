@@ -19,6 +19,11 @@ const create_credential_dto_1 = require("./dto/create-credential.dto");
 const update_credential_dto_1 = require("./dto/update-credential.dto");
 const response_credential_dto_1 = require("./dto/response-credential.dto");
 const swagger_1 = require("@nestjs/swagger");
+const auth_guard_1 = require("../guard/auth.guard");
+const roles_guard_1 = require("../guard/roles.guard");
+const swagger_2 = require("@nestjs/swagger");
+const common_2 = require("@nestjs/common");
+const login_user_dto_1 = require("./dto/login-user.dto");
 let CredentialsController = class CredentialsController {
     constructor(credentialsService) {
         this.credentialsService = credentialsService;
@@ -43,7 +48,12 @@ let CredentialsController = class CredentialsController {
 };
 exports.CredentialsController = CredentialsController;
 __decorate([
-    (0, common_1.Post)(),
+    (0, common_1.Post)('credential'),
+    (0, swagger_1.ApiOperation)({ summary: 'Loguear un usuario' }),
+    (0, swagger_1.ApiResponse)({ status: 201, description: 'Usuario logueado exitosamente', type: login_user_dto_1.LoginUserDto }),
+    (0, swagger_1.ApiResponse)({ status: 500, description: 'Error inesperado al loguear el usuario' }),
+    (0, common_2.UseGuards)(auth_guard_1.AuthGuard, roles_guard_1.RolesGuard),
+    (0, swagger_2.ApiSecurity)('bearer'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_credential_dto_1.CreateCredentialDto]),
@@ -51,6 +61,11 @@ __decorate([
 ], CredentialsController.prototype, "create", null);
 __decorate([
     (0, common_1.Put)(':id'),
+    (0, swagger_1.ApiOperation)({ summary: 'Modificar Credencial' }),
+    (0, swagger_1.ApiResponse)({ status: 201, description: 'Usuario logueado exitosamente', type: login_user_dto_1.LoginUserDto }),
+    (0, swagger_1.ApiResponse)({ status: 500, description: 'Error inesperado al loguear el usuario' }),
+    (0, common_2.UseGuards)(auth_guard_1.AuthGuard, roles_guard_1.RolesGuard),
+    (0, swagger_2.ApiSecurity)('bearer'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -59,6 +74,8 @@ __decorate([
 ], CredentialsController.prototype, "update", null);
 __decorate([
     (0, common_1.Delete)(':id'),
+    (0, common_2.UseGuards)(auth_guard_1.AuthGuard, roles_guard_1.RolesGuard),
+    (0, swagger_2.ApiSecurity)('bearer'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
@@ -66,6 +83,8 @@ __decorate([
 ], CredentialsController.prototype, "remove", null);
 __decorate([
     (0, common_1.Get)(':id'),
+    (0, common_2.UseGuards)(auth_guard_1.AuthGuard, roles_guard_1.RolesGuard),
+    (0, swagger_2.ApiSecurity)('bearer'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
@@ -73,6 +92,8 @@ __decorate([
 ], CredentialsController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Get)(),
+    (0, common_2.UseGuards)(auth_guard_1.AuthGuard, roles_guard_1.RolesGuard),
+    (0, swagger_2.ApiSecurity)('bearer'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)

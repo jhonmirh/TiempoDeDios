@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Param } from '@nestjs/common';
+import { Body, Controller, Post, Param , Get} from '@nestjs/common';
 import { DevotionalsService } from './devotionals.service';
 import { CreateDevotionalDto } from './dto/create-devotional.dto';
 import { Pastor } from '../pastor/pastor.entity';
@@ -10,6 +10,8 @@ import { RolesGuard } from 'src/guard/roles.guard';
 import { ApiSecurity } from '@nestjs/swagger';
 import { UseGuards } from '@nestjs/common';
 import { Roles } from 'src/decorators/roles.decorator';
+import { Devotional } from './devotional.entity';
+
 @ApiTags('devotionals')
 @Controller('devotionals')
 export class DevotionalsController {
@@ -28,10 +30,26 @@ export class DevotionalsController {
   }
 
 
-
+  @Get()
+  @UseGuards(AuthGuard, RolesGuard)
+  @ApiSecurity('bearer')
+  async findAll(): Promise<ResponseDevotionalDto[]> {
+    const devotionals = await this.devotionalsService.findAll();
+    return devotionals.map((devotional) => new ResponseDevotionalDto(devotional));
+  }
   
 
   private async findPastorById(pastorId: string): Promise<Pastor> {
     return this.pastorsService.findById(pastorId);
   }
+
+
+  @Get('pastor/:pastorId')
+  @UseGuards(AuthGuard, RolesGuard)
+  @ApiSecurity('bearer')
+  @Roles('admin')
+  async findByPastor(@Param('pastorId') pastorId: string): Promise<Devotional[]> {
+    return this.devotionalsService.findByPastorId(pastorId);
+  }
+
 }

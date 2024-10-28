@@ -12,15 +12,27 @@ const typeorm_1 = require("@nestjs/typeorm");
 const credentials_service_1 = require("./credentials.service");
 const credentials_controller_1 = require("./credentials.controller");
 const credential_entity_1 = require("./credential.entity");
+const jwt_1 = require("@nestjs/jwt");
+const config_1 = require("@nestjs/config");
+const auth_guard_1 = require("../guard/auth.guard");
 let CredentialsModule = class CredentialsModule {
 };
 exports.CredentialsModule = CredentialsModule;
 exports.CredentialsModule = CredentialsModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([credential_entity_1.Credential])],
+        imports: [typeorm_1.TypeOrmModule.forFeature([credential_entity_1.Credential]),
+            jwt_1.JwtModule.registerAsync({
+                imports: [config_1.ConfigModule],
+                inject: [config_1.ConfigService],
+                useFactory: (configService) => ({
+                    secret: configService.get('JWT_SECRET'),
+                    signOptions: { expiresIn: '1h' },
+                }),
+            }),
+            config_1.ConfigModule,],
         controllers: [credentials_controller_1.CredentialsController],
-        providers: [credentials_service_1.CredentialsService],
-        exports: [credentials_service_1.CredentialsService],
+        providers: [credentials_service_1.CredentialsService, auth_guard_1.AuthGuard],
+        exports: [credentials_service_1.CredentialsService, jwt_1.JwtModule, auth_guard_1.AuthGuard],
     })
 ], CredentialsModule);
 //# sourceMappingURL=credentials.module.js.map

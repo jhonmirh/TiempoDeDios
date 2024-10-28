@@ -9,16 +9,25 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.DevotionalModule = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
-const devotionals_service_1 = require("./devotionals.service");
 const devotional_entity_1 = require("./devotional.entity");
-const pastors_module_1 = require("../pastor/pastors.module");
+const devotionals_service_1 = require("./devotionals.service");
+const devotionals_controller_1 = require("./devotionals.controller");
+const pastor_entity_1 = require("../pastor/pastor.entity");
+const pastors_service_1 = require("../pastor/pastors.service");
+const config_1 = require("@nestjs/config");
+const jwt_1 = require("@nestjs/jwt");
 let DevotionalModule = class DevotionalModule {
 };
 exports.DevotionalModule = DevotionalModule;
 exports.DevotionalModule = DevotionalModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([devotional_entity_1.Devotional]), pastors_module_1.PastorsModule],
-        providers: [devotionals_service_1.DevotionalsService],
+        imports: [
+            typeorm_1.TypeOrmModule.forFeature([devotional_entity_1.Devotional, pastor_entity_1.Pastor]),
+            config_1.ConfigModule,
+            jwt_1.JwtModule,
+        ],
+        controllers: [devotionals_controller_1.DevotionalsController],
+        providers: [devotionals_service_1.DevotionalsService, pastors_service_1.PastorsService],
     })
 ], DevotionalModule);
 //# sourceMappingURL=devotionals.module.js.map

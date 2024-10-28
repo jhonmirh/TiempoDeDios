@@ -1,13 +1,13 @@
 import { Devotional } from 'src/devotional/devotional.entity';
 import { Sermon } from 'src/sermon/sermon.entity';
-export declare class Pastor {
+export declare class ResponsePastorDto {
     id: string;
-    phone: string;
-    address: string;
     name: string;
     email: string;
-    country: string;
+    phone: string;
+    address: string;
     city: string;
+    country: string;
     age: number;
     nid: number;
     account: string;
@@ -15,4 +15,5 @@ export declare class Pastor {
     federation: string;
     devotionals: Devotional[];
     sermons: Sermon[];
+    constructor(pastor: any);
 }

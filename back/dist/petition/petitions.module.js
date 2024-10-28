@@ -12,12 +12,14 @@ const typeorm_1 = require("@nestjs/typeorm");
 const petitions_controller_1 = require("./petitions.controller");
 const petitions_service_1 = require("./petitions.service");
 const petition_entity_1 = require("./petition.entity");
+const credentials_module_1 = require("../credential/credentials.module");
+credentials_module_1.CredentialsModule;
 let PetitionsModule = class PetitionsModule {
 };
 exports.PetitionsModule = PetitionsModule;
 exports.PetitionsModule = PetitionsModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([petition_entity_1.Petition])],
+        imports: [typeorm_1.TypeOrmModule.forFeature([petition_entity_1.Petition]), credentials_module_1.CredentialsModule],
         controllers: [petitions_controller_1.PetitionsController],
         providers: [petitions_service_1.PetitionsService],
     })

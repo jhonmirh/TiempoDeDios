@@ -1,26 +1,26 @@
 // src/devotional/dto/response-devotional.dto.ts
 import { IsString, IsDateString } from 'class-validator';
+import { Devotional } from '../devotional.entity';
 
 export class ResponseDevotionalDto {
-  @IsString()
   id: string;
-
-  @IsDateString()
   date: string;
-
-  @IsString()
   description: string;
-
-  @IsString()
   text: string;
-
-  @IsString()
   citationText: string;
+  pastor: { id: string; name: string; email: string, phone:string };
 
-  @IsString()
-  pastorId: string;
-
-  constructor(partial: Partial<ResponseDevotionalDto>) {
-    Object.assign(this, partial);
+  constructor(devotional: Devotional) {
+    this.id = devotional.id;
+    this.date = devotional.date;
+    this.description = devotional.description;
+    this.text = devotional.text;
+    this.citationText = devotional.citationText;
+    this.pastor = {
+      id: devotional.pastor.id,
+      name: devotional.pastor.name,
+      email: devotional.pastor.email,
+      phone: devotional.pastor.phone,
+    };
   }
 }
