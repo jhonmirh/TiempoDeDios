@@ -15,6 +15,8 @@ const devotional_entity_1 = require("../devotional/devotional.entity");
 const sermon_entity_1 = require("../sermon/sermon.entity");
 let Pastor = class Pastor {
 };
+
+
 exports.Pastor = Pastor;
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),
