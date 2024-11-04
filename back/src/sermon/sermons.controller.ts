@@ -6,6 +6,11 @@ import { UpdateSermonDto } from './dto/update-sermon.dto';
 import { ResponseSermonDto } from './dto/response-sermon.dto';
 import { Sermon } from './sermon.entity';
 import { ApiTags } from '@nestjs/swagger';
+import { AuthGuard } from 'src/guard/auth.guard';
+import { RolesGuard } from 'src/guard/roles.guard';
+import { ApiSecurity } from '@nestjs/swagger';
+import { UseGuards } from '@nestjs/common';
+import { Roles } from 'src/decorators/roles.decorator';
 
 @ApiTags('sermons')
 @Controller('sermons')
@@ -13,6 +18,9 @@ export class SermonsController {
   constructor(private readonly sermonsService: SermonsService) {}
 
   @Post()
+  @UseGuards(AuthGuard, RolesGuard)
+  @ApiSecurity('bearer')
+  @Roles('admin')
   async create(@Body() dto: CreateSermonDto): Promise<ResponseSermonDto> {
     const sermon = await this.sermonsService.create(dto);
     return new ResponseSermonDto(sermon);
@@ -31,6 +39,9 @@ export class SermonsController {
   }
 
   @Put(':id')
+  @UseGuards(AuthGuard, RolesGuard)
+  @ApiSecurity('bearer')
+  @Roles('admin')
   async update(
     @Param('id') id: string,
     @Body() dto: UpdateSermonDto,
@@ -40,11 +51,17 @@ export class SermonsController {
   }
 
   @Delete(':id')
+  @UseGuards(AuthGuard, RolesGuard)
+  @ApiSecurity('bearer')
+  @Roles('admin')
   async remove(@Param('id') id: string): Promise<void> {
     return this.sermonsService.remove(id);
   }
 
   @Get('pastor/:pastorId')
+  @UseGuards(AuthGuard, RolesGuard)
+  @ApiSecurity('bearer')
+  @Roles('admin')
   async findByPastorId(@Param('pastorId') pastorId: string): Promise<ResponseSermonDto[]> {
     const sermons = await this.sermonsService.findByPastorId(pastorId);
     return sermons.map(sermon => new ResponseSermonDto(sermon));

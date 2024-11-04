@@ -31,8 +31,6 @@ export class DevotionalsController {
 
 
   @Get()
-  @UseGuards(AuthGuard, RolesGuard)
-  @ApiSecurity('bearer')
   async findAll(): Promise<ResponseDevotionalDto[]> {
     const devotionals = await this.devotionalsService.findAll();
     return devotionals.map((devotional) => new ResponseDevotionalDto(devotional));
